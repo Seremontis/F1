@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css?family=Orbitron');
+
+
+table{
+    margin: auto;
+    text-align: center;
+    border: solid 1px black;
+    font-family: 'Orbitron', sans-serif;
+}
+
+
+
+tr th,  tr td{
+    padding: 15px;
+    border-right: solid 1px black;
+}
+
+th,td{
+    border-bottom: solid 1px black;
+}
+
+td:first-child{
+    width: 45px;
+    padding: 15px;
+}
+
+td{
+    padding: 15px;
+    
+}
+table tr:nth-child(odd){
+background-color: rgb(173, 150, 140);
+}
+
+table tr:nth-child(even){
+background-color: rgb(206, 190, 183);
+}
+
+table tr:first-child{
+    background-color: rgb(163, 152, 152);
+}
+
+
+#klas tr:nth-child(2){
+    background-color: rgb(223, 160, 0);
+    font-size: 22px;  
+}
+#klas tr:nth-child(3){
+    background-color: silver;
+    font-size: 20px;
+}
+#klas tr:nth-child(4){
+    background-color: rgb(205, 127, 50);
+    font-size: 18px;
+}
+
+@media only screen and (max-width: 959px) {
+    table{
+        width: 100%;
+    }
+}
