@@ -24,14 +24,18 @@ class Detail{
                 $this->informacje();
                 break;
             default:
-                $this->main();
+                $this->main();               
                 break;
 
         }
         }
         else{
-            $_GET['co']='main';
             $this->main();
+            ?>
+            <script>
+            animacja();
+            </script>
+            <?php
         }
     }
 
@@ -167,7 +171,7 @@ class Detail{
                             var xmlDoc = new DOMParser().parseFromString(xmlhttp.responseText,'text/xml');
 
                             document.write("<h1>Kalendarz sezonu "+rok+"</h1>");
-                            document.write("<table>");
+                            document.write("<table class='classification'>");
                             document.write("<tr><th>Runda</th>");
                             document.write("<th>Nazwa wyścigu</th>");
                             document.write("<th>Nazwa toru</th>");

@@ -1,15 +1,5 @@
 <?php
 include('detail.php');
-
-
-
-if(isset($_GET['co'])){
-
-}
-else{
-    $_GET['co']='main';
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -32,28 +22,9 @@ else{
     <script src="js/megamenu.js"></script>
     <!---->
     <script>
-        window.onscroll = function() {scrollFunction()};
-
-        $(document).ready(function () {
-            Slider = $('#slider').Swipe({
-                auto: 3000,
-                continuous: true
-            }).data('Swipe');
-
-            $('.next').on('click', Slider.next);
-            $('.prev').on('click', Slider.prev);
-
-            $("#scrollup").click(function(){
-                $('html, body').animate({ scrollTop: 0 }, 600);
-            })
-        });
-
-        
-
+        scrol();
 
     </script>
-
-
 </head>
 
 <body onload="czas()">
@@ -204,7 +175,7 @@ else{
 
         </aside>
         <footer>
-            <span id="zegar"></span>
+            <span id="timer"></span>
         </footer>
     <div id="scrollup"><img src="picture//up.png"></div>
 

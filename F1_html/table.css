@@ -57,5 +57,28 @@ table tr:first-child{
 @media only screen and (max-width: 959px) {
     table{
         width: 100%;
+        font-size: 3vw;
+    }
+    #klas tr:nth-child(2){
+        background-color: rgb(223, 160, 0);
+        font-size: 4vw;  
+    }
+    #klas tr:nth-child(3){
+        background-color: silver;
+        font-size: 3.5vw;
+    }
+    #klas tr:nth-child(4){
+        background-color: rgb(205, 127, 50);
+        font-size: 3vw;
+    }
+
+
+    .classification{
+        font-size: 2.5vw;
+    }
+
+    .classification tr th,
+    .classification tr td {
+        padding:5px;
     }
 }

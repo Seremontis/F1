@@ -55,7 +55,7 @@
 @media only screen and (max-width: 959px) {
 .demo-wrapper,#slider,.swipe,.swipe-swap, .swipe-swap div img{
 		height: 200px;
-		width: 90vw;
+		width: 99vw;
 	}
 .swipe-swap div img{
 object-fit: none;

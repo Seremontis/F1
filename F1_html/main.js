@@ -1,4 +1,24 @@
+//operowanie na obiektach(klasach) było zbyteczne
+function scrol(){
+window.onscroll = function() {scrollFunction()};
 
+        $(document).ready(function () {
+            Slider = $('#slider').Swipe({
+                auto: 3000,
+                continuous: true
+            }).data('Swipe');
+
+            $('.next').on('click', Slider.next);
+            $('.prev').on('click', Slider.prev);
+
+            $("#scrollup").click(function(){
+                $('html, body').animate({ scrollTop: 0 }, 600);
+            })
+        });
+    }
+
+
+function animacja(){
 $(document).ready(function () {  
     var proc=0;    
     var txt=setInterval(function(){
@@ -10,30 +30,16 @@ $(document).ready(function () {
         if(proc==100)
         clearInterval(txt);
     },120);
-    var s = document.cookie;
-    var tab=s.split('=');
-    
-    if(tab[1]!='true'){
+
     document.getElementById("przyciemnienie").style.display="inherit";
     setTimeout(function(){
         $('.obrazek').remove();
         $('#przyciemnienie').fadeOut("slow");  
         document.cookie='app_start=true';
     },4400); //4400
-    }
-    else{
-        $('#przyciemnienie').remove();
-    }
 
-    $('#coin-slider').coinslider();
-    Slider = $('#slider').Swipe({
-		auto: 5000,
-		continuous: true
-	}).data('Swipe');
-	$('.next').on('click', Slider.next);
-	$('.prev').on('click', Slider.prev);
 });
-
+}
 
 
 
@@ -48,7 +54,7 @@ function czas(){
         min='0'+min;
 
     godzina=godz+":"+min+":"+sek;
-    document.getElementById("zegar").innerHTML=godzina;
+    document.getElementById("timer").innerHTML=godzina;
 
     setTimeout(czas,1000);
 }
