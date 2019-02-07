@@ -43,13 +43,24 @@ body{
 }
 
 .road .obrazek{
-    animation-duration: 4.3s;
-    animation-name: move;
+    -webkit-animation-duration: 4.3s;
+            animation-duration: 4.3s;
+    -webkit-animation-name: move;
+            animation-name: move;
 }
 
 .road img{
     width: 200px;
     height: 43px;
+}
+
+@-webkit-keyframes move{
+from{
+    margin-left: -200px;
+}
+to{
+    margin-left:100vw;
+}
 }
 
 @keyframes move{
