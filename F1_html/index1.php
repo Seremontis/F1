@@ -27,13 +27,13 @@ include('detail.php');
     </script>
 </head>
 
-<body onload="czas()">
+<body onload="time()">
 
-    <div id="przyciemnienie">
+    <div id="loading">
         <div class="road">
-            <img src="picture\f1_start.png" class="obrazek">
+            <img src="picture\f1_start.png" class="picture">
         </div>
-        <div class="odliczanie">0%</div>
+        <div class="progressPrec">0%</div>
     </div>
 
 
@@ -49,17 +49,17 @@ include('detail.php');
                             <ul>
                                 <li><a href="#">Zespołowe</a>
                                     <ul>
-                                        <li><a href="index1.php?co=klas&jaka=zesp&rok=2018">2018</a></li>
-                                        <li><a href="index1.php?co=klas&jaka=zesp&rok=2017">2017</a></li>
-                                        <li><a href="index1.php?co=klas&jaka=zesp&rok=2017">2016</a></li>
+                                        <li><a href="index1.php?type=clas&what=team&year=2018">2018</a></li>
+                                        <li><a href="index1.php?type=clas&what=team&year=2017">2017</a></li>
+                                        <li><a href="index1.php?type=clas&what=team&year=2017">2016</a></li>
                                         <li><a href="#">Archiwum</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Kierowców</a>
                                     <ul>
-                                        <li><a href="index1.php?co=klas&jaka=kier&rok=2018">2018</a></li>
-                                        <li><a href="index1.php?co=klas&jaka=kier&rok=2017">2017</a></li>
-                                        <li><a href="index1.php?co=klas&jaka=kier&rok=2016">2016</a></li>
+                                        <li><a href="index1.php?type=clas&what=driv&year=2018">2018</a></li>
+                                        <li><a href="index1.php?type=clas&what=driv&year=2017">2017</a></li>
+                                        <li><a href="index1.php?type=clas&what=driv&year=2016">2016</a></li>
                                         <li><a href="#">Archiwum</a></li>
                                     </ul>
                                 </li>
@@ -69,15 +69,15 @@ include('detail.php');
                             <ul>
                                 <li><a href="#">Kalendarz</a>
                                     <ul>
-                                        <li><a href="index1.php?co=kal&rok=2018">2018</a></li>
-                                        <li><a href="index1.php?co=kal&rok=2018">2017</a></li>
+                                        <li><a href="index1.php?type=cal&year=2018">2018</a></li>
+                                        <li><a href="index1.php?type=cal&year=2018">2017</a></li>
                                         <li><a href="#">Archiwum</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="#">Lokalizacje</a>
                                     <ul>
-                                        <li><a href="index1.php?co=lok&rok=2018">Obecne</a></li>
-                                        <li><a href="index1.php?co=lok">Dawne</a></li>
+                                        <li><a href="index1.php?type=loc&year=2018">Obecne</a></li>
+                                        <li><a href="index1.php?type=loc">Dawne</a></li>
                                     </ul>
                                 </li>
                             </ul>
@@ -86,20 +86,20 @@ include('detail.php');
                                 <ul>
                                     <li><a href="#">Samochody wyścigowe F1</a>
                                         <ul>
-                                            <li><a href="index1.php?co=poj&jaki=fer">Ferrari</a></li>
-                                            <li><a href="index1.php?co=poj&jaki=mer">Mercedes</a></li>
-                                            <li><a href="index1.php?co=poj&jaki=mcl">Mclaren</a></li>
-                                            <li><a href="index1.php?co=poj&jaki=red">Red Bull</a></li>
+                                            <li><a href="index1.php?type=car&what=fer">Ferrari</a></li>
+                                            <li><a href="index1.php?type=car&what=mer">Mercedes</a></li>
+                                            <li><a href="index1.php?type=car&what=mcl">Mclaren</a></li>
+                                            <li><a href="index1.php?type=car&what=red">Red Bull</a></li>
                                         </ul>
                                     </li>
                                     <li><a href="#">Inne samochody</a>
                                         <ul>
-                                            <li><a href="index1.php?co=poj&jaki=sc">Samochód bezpieczeństwa</a></li>
-                                            <li><a href="index1.php?co=poj&jaki=sm">Samochód meyczny</a></li>
+                                            <li><a href="index1.php?type=car&what=sc">Samochód bezpieczeństwa</a></li>
+                                            <li><a href="index1.php?type=car&what=mc">Samochód meyczny</a></li>
                                         </ul>
                                     </li>
                                 </ul>
-                                <li class="koniec"><a href="index1.php?co=info">Informacje ogólne</a></li>
+                                <li class="end"><a href="index1.php?type=info">Informacje ogólne</a></li>
                             </li>
                     </ul>
                 </div>
@@ -127,7 +127,7 @@ include('detail.php');
         </header>
         <main>
             <?php 
-            $wykonaj=new Detail();
+            $execute=new Detail();
             ?>
         </main>
         <aside>

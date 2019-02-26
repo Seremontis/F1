@@ -1,27 +1,28 @@
+<script type="text/javascript" src="detail.js"></script>
 <?php
 /*początkowo strona miała korzystać z bazy dancych dlatego pisana po części w php*/
 class Detail{
 
-    function Detail(){
-        if(isset($_GET['co'])){
-        switch($_GET['co']){
+    function Detail(){        
+        if(isset($_GET['type'])){
+        switch($_GET['type']){
             case 'main':
                 $this->main();
                 break;
-            case 'klas':
-                $this->klasyfikacje();
+            case 'clas':
+                $this->classification();
                 break;
-            case "kal":
-                $this->kalendarz();
+            case "cal":
+                $this->calendar();
                 break;
-            case "lok":
-                $this->lokalizacje();
+            case "loc":
+                $this->location();
                 break;
-            case "poj":
-                $this->samochody();
+            case "car":
+                $this->cars();
                 break;
             case "info":
-                $this->informacje();
+                $this->info();
                 break;
             default:
                 $this->main();               
@@ -33,7 +34,7 @@ class Detail{
             $this->main();
             ?>
             <script>
-            animacja();
+            animation();
             </script>
             <?php
         }
@@ -52,263 +53,51 @@ class Detail{
             </span>';
         }
 
-        function klasyfikacje(){
+        function classification(){
 
-            if($_GET['jaka']=='zesp'){
+            if($_GET['what']=='team'){
             ?>
                 <script>
-                    if (window.XMLHttpRequest)
-                    {// code for IE7+, Firefox, Chrome, Opera, Safari
-                        xmlhttp=new XMLHttpRequest();
-                    }
-                    else
-                    {// code for IE6, IE5
-                        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                    }
-
-                    var rok=<?php echo $_GET['rok'];?>;
-                    
-                    xmlhttp.onload = function() {
-
-                        var xmlDoc = new DOMParser().parseFromString(xmlhttp.responseText,'text/xml');
-
-                        document.write("<h1>Klasyfikacja zespołowa sezonu "+rok+"</h1>");
-                        document.write("<table id='klas'>");
-                        document.write("<tr><th>L.P.</th>");
-                        document.write("<th>Nazwa</th>");
-                        document.write("<th>Punkty</th>");
-                        document.write("<th>Wygrane</th></tr>");
-                        var x=xmlDoc.getElementsByTagName("ConstructorStanding");
-                        for (i=0;i<x.length;i++)
-                        { 
-                            document.write("<tr><td>");
-                            document.write(x[i].getAttribute("position"));
-                            document.write("</td>");
-                            document.write("<td>");
-                            document.write(x[i].getElementsByTagName("Name")[0].textContent);
-                            document.write("<td>");
-                            document.write(x[i].getAttribute("points"));
-                            document.write("</td>");
-                            document.write("<td>");
-                            document.write(x[i].getAttribute("wins"));
-                            document.write("</td></tr>");
-                        }
-                        document.write("</table>");
-
-                    }
-                    
-                    xmlhttp.open("GET","http://ergast.com/api/f1/"+rok+"/constructorStandings.xml",false);
-                    xmlhttp.send();
-                    </script>
+                    classificationTeam(<?php echo $_GET['year'];?>);
+                </script>
             <?php } 
-            else if($_GET['jaka']=='kier'){
+            else if($_GET['what']=='driv'){
                 ?>
                     <script>
-                        if (window.XMLHttpRequest)
-                        {// code for IE7+, Firefox, Chrome, Opera, Safari
-                            xmlhttp=new XMLHttpRequest();
-                        }
-                        else
-                        {// code for IE6, IE5
-                            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                        }
-
-                        var rok=<?php echo $_GET['rok']; ?>;
-                        
-                        xmlhttp.onload = function() {
-
-                            var xmlDoc = new DOMParser().parseFromString(xmlhttp.responseText,'text/xml');
-
-                            document.write("<h1>Klasyfikacja kierowców sezonu "+rok+"</h1>");
-                            document.write("<table id='klas'>");
-                            document.write("<tr><th>L.P.</th>");
-                            document.write("<th>Imię i Nazwisko</th>");
-                            document.write("<th>Punkty</th>");
-                            document.write("<th>Wygrane</th></tr>");
-                            var x=xmlDoc.getElementsByTagName("DriverStanding");
-                            for (i=0;i<x.length;i++)
-                            { 
-                                document.write("<tr><td>");     
-                                document.write(x[i].getAttribute("position"));
-                                document.write("</td>");
-                                document.write("<td>");    
-                                document.write(x[i].getElementsByTagName("GivenName")[0].textContent+" "+x[i].getElementsByTagName("FamilyName")[0].textContent);
-                                document.write("<td>");
-                                document.write(x[i].getAttribute("points"));
-                                document.write("</td>");
-                                document.write("<td>");
-                                document.write(x[i].getAttribute("wins"));
-                                document.write("</td></tr>");
-                            }
-                            document.write("</table>");
-
-                        }
-                        
-                        xmlhttp.open("GET","http://ergast.com/api/f1/"+rok+"/driverStandings.xml",false);
-                        xmlhttp.send();
-                        </script>
+                        classificationDrive(<?php echo $_GET['year'];?>);
+                    </script>
 
                 <?php
                 }
             
         }
-        function kalendarz(){
+
+        function calendar(){
             ?>
                     <script>
-                        if (window.XMLHttpRequest)
-                        {// code for IE7+, Firefox, Chrome, Opera, Safari
-                            xmlhttp=new XMLHttpRequest();
-                        }
-                        else
-                        {// code for IE6, IE5
-                            xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                        }
-
-                        var rok=<?php echo $_GET['rok']; ?>;
-                        
-                        xmlhttp.onload = function() {
-
-                            var xmlDoc = new DOMParser().parseFromString(xmlhttp.responseText,'text/xml');
-
-                            document.write("<h1>Kalendarz sezonu "+rok+"</h1>");
-                            document.write("<table class='classification'>");
-                            document.write("<tr><th>Runda</th>");
-                            document.write("<th>Nazwa wyścigu</th>");
-                            document.write("<th>Nazwa toru</th>");
-                            document.write("<th>Lokalizacja </th>");
-                            document.write("<th>Data</th></tr>");
-                            var x=xmlDoc.getElementsByTagName("Race");
-                            for (i=0;i<x.length;i++)
-                            { 
-                                document.write("<tr><td>");
-                                document.write(x[i].getAttribute("round"));
-                                document.write("</td><td>");   
-                                document.write(x[i].getElementsByTagName("RaceName")[0].textContent);
-                                document.write("</td><td>"); 
-                                document.write(x[i].getElementsByTagName("CircuitName")[0].textContent);
-                                document.write("</td>");
-                                document.write("<td>");
-                                document.write(x[i].getElementsByTagName("Locality")[0].textContent);
-                                document.write("</td><td>"); 
-                                document.write(x[i].getElementsByTagName("Date")[0].textContent);
-                                document.write("</td>");
-                                document.write("</td></tr>");
-                            }
-                            document.write("</table>");
-
-                        }
-                        
-                        xmlhttp.open("GET","http://ergast.com/api/f1/"+rok+".xml",false);
-                        xmlhttp.send();
-                        </script>
+                        calendar(<?php echo $_GET['year'];?>);
+                    </script>
             <?php
-            }
+        }
 
-        function lokalizacje(){
-            if(isset($_GET['rok'])){?>
+        function location(){
+            if(isset($_GET['year'])){
+                ?>
             <script>
-                document.getElementsByTagName('main')[0].style.display="block";
-                if (window.XMLHttpRequest)
-                {// code for IE7+, Firefox, Chrome, Opera, Safari
-                    xmlhttp=new XMLHttpRequest();
-                }
-                else
-                {// code for IE6, IE5
-                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                }       
-                var rok=<?php echo $_GET['rok'];?> 
-                
-                xmlhttp.onload = function() {
-
-                    var xmlDoc = new DOMParser().parseFromString(xmlhttp.responseText,'text/xml');
-                    
-                    var licz=document.createElement('ul');
-                    var h1=document.createElement('h1');
-                    h1.appendChild(document.createTextNode("Obecne tory"));
-                    licz.appendChild(h1);
-                    var x=xmlDoc.getElementsByTagName("Circuit");
-                    for (i=0;i<x.length;i++)
-                    { 
-                        var zm=document.createElement('li');
-                        var zmienna= document.createElement('a');
-                        zmienna.setAttribute("href",x[i].getAttribute('url'));
-                        zmienna.setAttribute("target","_blank");
-                        zmienna.innerHTML=x[i].getElementsByTagName('CircuitName')[0].textContent;
-                        zm.appendChild(zmienna);
-                        licz.appendChild(zm);
-                    }   
-                    document.getElementsByTagName('main')[0].appendChild(licz);    
-                }
-
-                xmlhttp.open("GET","http://ergast.com/api/f1/"+rok+"/circuits.xml",false);
-                xmlhttp.send();
-                </script>
+               locationTrackPresent(<?php echo $_GET['year'];?>);
+            </script>
             <?php
             }
             else{
                 ?>
                 <script>
-                    var limit=100;
-                    var licznik=0;
-                    if (window.XMLHttpRequest)
-                            {// code for IE7+, Firefox, Chrome, Opera, Safari
-                                xmlhttp=new XMLHttpRequest();
-                            }
-                            else
-                            {// code for IE6, IE5
-                                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                            }
-                    document.getElementsByTagName('main')[0].style.display="grid";
-                    var div=document.createElement('div');
-                    div.setAttribute('class','lista')
-                    var licz=document.createElement('ul');
-                    var h1=document.createElement('h1');
-                    h1.appendChild(document.createTextNode("Dawne tory"));
-                    licz.appendChild(h1);
-                        while(licznik<limit)
-                        {
-                            var rok=0;
-                            xmlhttp.onload = function() {
-
-                                var xmlDoc = new DOMParser().parseFromString(xmlhttp.responseText,'text/xml');
-                                var x=xmlDoc.getElementsByTagName("MRData");
-                                var limit=x[0].getAttribute('total');
-                                var x=xmlDoc.getElementsByTagName("Circuit");
-                                for (i=0;i<x.length;i++)
-                                { 
-                                    var zm=document.createElement('li');
-                                    var zmienna= document.createElement('a');
-                                    zmienna.setAttribute("href",x[i].getAttribute('url'));
-                                    zmienna.setAttribute("target","_blank");
-                                    zmienna.innerHTML=x[i].getElementsByTagName('CircuitName')[0].textContent;
-                                    zm.appendChild(zmienna);
-                                    licz.appendChild(zm);
-                                }   
-                                  
-                            }
-                            
-                            xmlhttp.open("GET","http://ergast.com/api/f1/circuits?limit=30&offset="+licznik,false);
-                            xmlhttp.send();
-
-                            licznik+=30;
-                        }
-                        div.appendChild(licz);
-                        var div2=document.createElement('div');
-                        div2.setAttribute('class','lista2')
-                        for(var i=1;i<4;i++){
-                            var img = document.createElement("img");
-                            img.src="picture\\track"+i+".jpg";
-                            div2.appendChild(img);
-                        }
-                        
-                        document.getElementsByTagName('main')[0].appendChild(div);                        
-                        document.getElementsByTagName('main')[0].appendChild(div2);   
+                    locationTrackOld();
                  </script>
             <?php
             }
         }
 
-        function samochody(){
+        function cars(){
             if(isset($_GET['jaki']))
             {
             switch($_GET['jaki']){
@@ -434,7 +223,7 @@ class Detail{
                     </script>
                     <?php
                         break;
-                        case 'sm':
+                        case 'mc':
                     ?>
                     <script>
                         var div=document.getElementsByTagName('main')[0];
@@ -467,13 +256,10 @@ class Detail{
                 $this->main();
         }
 
-        function informacje(){
+        function info(){
             ?>
             <script>
-            var div=document.getElementsByTagName('main')[0];
-            var p=document.createElement('p');
-            p.innerHTML ="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget urna at velit mattis condimentum. Sed erat erat, pretium ac erat eu, placerat maximus quam. Suspendisse quis fermentum eros, vitae semper quam. Duis nec risus pellentesque, venenatis nisl non, condimentum felis. Nam dictum, augue eget mattis viverra, sapien lorem imperdiet nisl, et molestie lacus erat eu arcu. In tempor, nunc eu placerat egestas, dolor orci consequat massa, in bibendum turpis mauris vitae eros. Suspendisse justo eros, tempor in magna eu, sollicitudin mollis mauris. Fusce sit amet elementum mi.";
-            div.appendChild(p);
+            info();
             </script>
             <?php
         }

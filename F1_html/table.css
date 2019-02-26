@@ -41,15 +41,15 @@ table tr:first-child{
 }
 
 
-#klas tr:nth-child(2){
+.clas tr:nth-child(2){
     background-color: rgb(223, 160, 0);
     font-size: 22px;  
 }
-#klas tr:nth-child(3){
+.clas tr:nth-child(3){
     background-color: silver;
     font-size: 20px;
 }
-#klas tr:nth-child(4){
+.clas tr:nth-child(4){
     background-color: rgb(205, 127, 50);
     font-size: 18px;
 }
@@ -59,26 +59,26 @@ table tr:first-child{
         width: 100%;
         font-size: 3vw;
     }
-    #klas tr:nth-child(2){
+    .clas tr:nth-child(2){
         background-color: rgb(223, 160, 0);
         font-size: 4vw;  
     }
-    #klas tr:nth-child(3){
+    .clas tr:nth-child(3){
         background-color: silver;
         font-size: 3.5vw;
     }
-    #klas tr:nth-child(4){
+    .clas tr:nth-child(4){
         background-color: rgb(205, 127, 50);
         font-size: 3vw;
     }
 
 
-    .classification{
+    .schedule{
         font-size: 2.5vw;
     }
 
-    .classification tr th,
-    .classification tr td {
+    .schedule tr th,
+    .schedule tr td {
         padding:5px;
     }
 }
